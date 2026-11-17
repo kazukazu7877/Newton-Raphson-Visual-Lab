@@ -632,6 +632,8 @@ export const EmergenceStage: React.FC<EmergenceStageProps> = ({
         position: 'relative',
         width: '100%',
         height: '580px',
+        maxHeight: 'min(580px, 80vh)',
+        minHeight: '380px',
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'var(--ink-900)',

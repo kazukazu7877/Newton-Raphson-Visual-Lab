@@ -4,7 +4,7 @@
 
 An interactive computational simulator and motion visualizer demonstrating the Newton–Raphson root-finding algorithm. The application pairs an analytical engine with high-framerate 2D Canvas choreography to illustrate the mechanics of iterative convergence and numerical edge cases.
 
-Live deployment: `<LIVE-URL>`
+Live deployment: https://newton-raphson-visual-lab.vercel.app
 
 ---
 

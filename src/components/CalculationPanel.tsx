@@ -90,14 +90,7 @@ export const CalculationPanel: React.FC<CalculationPanelProps> = ({ result, sele
 
         {/* 8 Metric Cards Grid */}
         {activeStep ? (
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: '6px',
-              marginTop: '6px',
-            }}
-          >
+          <div className="calc-metrics-grid">
             <div className="nr-card">
               <div className="nr-card-title">Iteration n</div>
               <div className="nr-card-value">{activeStep.n}</div>

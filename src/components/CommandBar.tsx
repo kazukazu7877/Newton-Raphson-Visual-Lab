@@ -125,17 +125,7 @@ export const CommandBar: React.FC<CommandBarProps> = ({ onRun, result, errorMsg 
 
   return (
     <div style={{ marginBottom: '12px' }}>
-      <div
-        className="nr-panel"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(240px, 1.3fr) minmax(360px, 3fr)',
-          gap: '16px',
-          alignItems: 'end',
-          padding: '12px 16px',
-          marginBottom: '8px',
-        }}
-      >
+      <div className="nr-panel command-bar-layout">
         <div>
           <label
             style={{
@@ -161,15 +151,7 @@ export const CommandBar: React.FC<CommandBarProps> = ({ onRun, result, errorMsg 
           </select>
         </div>
 
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '2fr 1fr 1fr 1.1fr 1.2fr',
-            gap: '8px',
-            alignItems: 'end',
-          }}
-        >
+        <form onSubmit={handleSubmit} className="form-inputs-layout">
           <div>
             <label
               style={{

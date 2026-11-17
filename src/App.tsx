@@ -52,14 +52,7 @@ export const App: React.FC = () => {
       <CommandBar onRun={handleRun} result={result} errorMsg={errorMsg} />
 
       {/* Hero Stage [68% Stage | 32% The Calculation] */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 0.68fr) minmax(0, 0.32fr)',
-          gap: '12px',
-          marginBottom: '14px',
-        }}
-      >
+      <div className="hero-layout">
         <div>
           <EmergenceStage
             payload={payload}

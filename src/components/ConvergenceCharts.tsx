@@ -282,14 +282,7 @@ export const ConvergenceCharts: React.FC<ConvergenceChartsProps> = ({ result, se
       </h3>
 
       {/* 4 Summary Metric Cards */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '8px',
-          marginBottom: '10px',
-        }}
-      >
+      <div className="summary-metrics-grid">
         <div className="nr-card">
           <div className="nr-card-title">Final Approximate Root</div>
           <div className="nr-card-value" style={{ color: SEMANTIC.root_ring }}>
@@ -316,13 +309,7 @@ export const ConvergenceCharts: React.FC<ConvergenceChartsProps> = ({ result, se
       </div>
 
       {/* 2 Diagnostic Charts */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '10px',
-        }}
-      >
+      <div className="charts-layout">
         <div
           className="nr-panel"
           style={{
