@@ -1,0 +1,205 @@
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import 'katex/dist/katex.min.css';
+
+:root {
+  --ink-950: #05080F;
+  --ink-900: #0A1020;
+  --ink-850: #0F1830;
+  --ink-800: #16213D;
+  --line: #22304F;
+  --grid-minor: #111B33;
+  --grid-major: #1A2745;
+  --panel-top-highlight: rgba(255, 255, 255, 0.05);
+  --panel-backdrop: rgba(15, 24, 48, 0.85);
+  --badge-bg: rgba(22, 33, 61, 0.85);
+
+  --text-1: #EEF3FC;
+  --text-2: #A3B1CC;
+  --text-3: #7585A8;
+
+  --curve-aqua: #2EE6D6;
+  --curve-azure: #4DA3FF;
+  --curve-periwinkle: #8F7BFF;
+  --curve-glow: rgba(77, 163, 255, 0.16);
+  --curve-glow-outer: rgba(46, 230, 214, 0.06);
+
+  --tangent: #FFC247;
+  --tangent-history: rgba(255, 194, 71, 0.22);
+  --tangent-halo: rgba(255, 194, 71, 0.14);
+
+  --current-x: #FF5C7A;
+  --current-x-history: rgba(255, 92, 122, 0.35);
+  --current-x-core: #FFA4B4;
+  --current-x-halo: rgba(255, 92, 122, 0.22);
+
+  --next-x: #B6F36B;
+  --next-x-history: rgba(182, 243, 107, 0.35);
+  --next-x-core: #E2FDC2;
+  --next-x-halo: rgba(182, 243, 107, 0.22);
+
+  --root-core: #FFFFFF;
+  --root-ring: #B6F36B;
+  --root-halo: rgba(182, 243, 107, 0.28);
+
+  --axis-x: #C7D3EA;
+
+  --table-highlight: rgba(77, 163, 255, 0.22);
+  --table-highlight-border: rgba(77, 163, 255, 0.45);
+  --focus-ring: rgba(77, 163, 255, 0.40);
+
+  --ambient-glow: rgba(46, 163, 255, 0.05);
+  --vignette: rgba(5, 8, 15, 0.35);
+
+  --ui-primary: #4DA3FF;
+  --ui-success: #6EE7A8;
+  --ui-warning: #FFC247;
+  --ui-error: #FF6B7F;
+
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--ink-950);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, .nr-title {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Card containers with top hairline highlight */
+.nr-card {
+  background-color: var(--ink-850);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: inset 0 1px 0 var(--panel-top-highlight);
+  padding: 10px 12px;
+}
+
+.nr-card-title {
+  font-size: 0.72rem;
+  color: var(--text-3);
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+
+.nr-card-value {
+  font-size: 1.02rem;
+  color: var(--text-1);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nr-panel {
+  background-color: var(--ink-850);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: inset 0 1px 0 var(--panel-top-highlight);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+/* Form Controls */
+input[type="text"], input[type="number"], select {
+  background-color: var(--ink-800);
+  color: var(--text-1);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+  border-color: var(--curve-azure);
+  box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+button {
+  font-family: var(--font-body);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--curve-azure);
+  outline-offset: 1px;
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--curve-azure);
+  color: var(--ink-950);
+  border: 1px solid var(--curve-azure);
+  font-weight: 600;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.btn-secondary {
+  background: var(--ink-800);
+  color: var(--text-1);
+  border: 1px solid var(--line);
+  font-weight: 500;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--line);
+  border-color: var(--curve-azure);
+  color: #FFFFFF;
+}
+
+.btn-secondary:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.btn-secondary.active {
+  background: var(--curve-azure);
+  color: var(--ink-950);
+  border-color: var(--curve-azure);
+  font-weight: 600;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
