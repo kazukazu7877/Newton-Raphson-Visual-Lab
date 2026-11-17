@@ -25,6 +25,7 @@ export const MathView: React.FC<MathViewProps> = ({ math, block = false }) => {
         display: block ? 'block' : 'inline-block',
         margin: block ? '6px 0' : '0 2px',
         overflowX: 'auto',
+        maxWidth: '100%',
       }}
     />
   );

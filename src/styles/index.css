@@ -71,9 +71,11 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   min-height: 100%;
+  overflow-x: hidden;
   background-color: var(--ink-950);
   color: var(--text-1);
   font-family: var(--font-body);
@@ -82,7 +84,11 @@ html, body {
 }
 
 /* Typography */
-h1, h2, h3, h4, .nr-title {
+h1,
+h2,
+h3,
+h4,
+.nr-title {
   font-family: var(--font-display);
   letter-spacing: -0.02em;
 }
@@ -123,7 +129,9 @@ h1, h2, h3, h4, .nr-title {
 }
 
 /* Form Controls */
-input[type="text"], input[type="number"], select {
+input[type="text"],
+input[type="number"],
+select {
   background-color: var(--ink-800);
   color: var(--text-1);
   border: 1px solid var(--line);
@@ -136,7 +144,9 @@ input[type="text"], input[type="number"], select {
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-input[type="text"]:focus, input[type="number"]:focus, select:focus {
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
   border-color: var(--curve-azure);
   box-shadow: 0 0 0 2px var(--focus-ring);
 }
@@ -195,6 +205,14 @@ button:focus-visible {
 }
 
 /* Layout Grids */
+.app-container {
+  max-width: 1540px;
+  margin: 0 auto;
+  padding: 16px 24px 40px 24px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
 .hero-layout {
   display: grid;
   grid-template-columns: minmax(0, 0.68fr) minmax(0, 0.32fr);
@@ -204,7 +222,7 @@ button:focus-visible {
 
 .command-bar-layout {
   display: grid;
-  grid-template-columns: minmax(240px, 1.3fr) minmax(360px, 3fr);
+  grid-template-columns: minmax(240px, 1.3fr) minmax(0, 3fr);
   gap: 16px;
   align-items: end;
   padding: 12px 16px;
@@ -213,61 +231,128 @@ button:focus-visible {
 
 .form-inputs-layout {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.1fr 1.2fr;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 1.2fr);
   gap: 8px;
   align-items: end;
 }
 
 .charts-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 10px;
 }
 
 .calc-metrics-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 6px;
   margin-top: 6px;
 }
 
 .summary-metrics-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
   margin-bottom: 10px;
 }
 
+/* Stage Transport Bar */
+.stage-transport-bar {
+  min-height: 44px;
+  background-color: var(--ink-850);
+  border-top: 1px solid var(--line);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  gap: 8px;
+  font-size: 0.8rem;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.transport-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.transport-slider {
+  flex: 1;
+  min-width: 40px;
+  margin: 0 8px;
+  height: 5px;
+  accent-color: var(--curve-azure);
+}
+
 @media (max-width: 1024px) {
   .hero-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
+
   .command-bar-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
+
   .form-inputs-layout {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
+
   .charts-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 @media (max-width: 640px) {
+  .app-container {
+    padding: 12px 10px 32px 10px;
+  }
+
   .form-inputs-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
+
   .calc-metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
   .summary-metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stage-transport-bar {
+    flex-wrap: wrap;
+    padding: 6px 8px;
+    gap: 6px;
+    justify-content: center;
+  }
+
+  .transport-group {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3px;
+  }
+
+  .transport-group .btn-secondary {
+    padding: 4px 7px;
+    font-size: 0.72rem;
+  }
+
+  .transport-slider {
+    width: 100%;
+    order: -1;
+    margin: 4px 0;
   }
 }
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
+
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

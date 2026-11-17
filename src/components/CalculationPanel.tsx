@@ -43,11 +43,13 @@ export const CalculationPanel: React.FC<CalculationPanelProps> = ({ result, sele
       className="nr-panel"
       style={{
         height: '100%',
+        minWidth: 0,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
         padding: '14px',
         marginBottom: 0,
+        overflow: 'hidden',
       }}
     >
       <div>
@@ -64,7 +66,7 @@ export const CalculationPanel: React.FC<CalculationPanelProps> = ({ result, sele
         </h3>
 
         {/* Function & Derivative */}
-        <div style={{ marginBottom: '4px', textAlign: 'center' }}>
+        <div style={{ marginBottom: '4px', textAlign: 'center', overflowX: 'auto', maxWidth: '100%' }}>
           <MathView
             math={`f(x) = ${result.expressionLatex}, \\quad f'(x) = ${result.derivativeLatex}`}
             block
@@ -72,13 +74,13 @@ export const CalculationPanel: React.FC<CalculationPanelProps> = ({ result, sele
         </div>
 
         {/* General Update Formula */}
-        <div style={{ marginBottom: '6px', textAlign: 'center' }}>
+        <div style={{ marginBottom: '6px', textAlign: 'center', overflowX: 'auto', maxWidth: '100%' }}>
           <MathView math="x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}" block />
         </div>
 
         {/* Active Step Substitution */}
         {activeStep && (
-          <div style={{ marginBottom: '10px', textAlign: 'center' }}>
+          <div style={{ marginBottom: '10px', textAlign: 'center', overflowX: 'auto', maxWidth: '100%' }}>
             <MathView
               math={`x_{${activeStep.n + 1}} = ${formatNum(activeStep.x_n)} - \\frac{${formatSubst(
                 activeStep.f_xn,

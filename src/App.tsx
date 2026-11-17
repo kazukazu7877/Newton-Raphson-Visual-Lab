@@ -38,13 +38,7 @@ export const App: React.FC = () => {
   }, [result]);
 
   return (
-    <div
-      style={{
-        maxWidth: '1540px',
-        margin: '0 auto',
-        padding: '16px 24px 40px 24px',
-      }}
-    >
+    <div className="app-container">
       {/* Header */}
       <Header />
 

@@ -631,6 +631,7 @@ export const EmergenceStage: React.FC<EmergenceStageProps> = ({
       style={{
         position: 'relative',
         width: '100%',
+        minWidth: 0,
         height: '580px',
         maxHeight: 'min(580px, 80vh)',
         minHeight: '380px',
@@ -724,21 +725,8 @@ export const EmergenceStage: React.FC<EmergenceStageProps> = ({
       />
 
       {/* Transport Controls Bar */}
-      <div
-        style={{
-          height: '44px',
-          backgroundColor: 'var(--ink-850)',
-          borderTop: '1px solid var(--line)',
-          boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.03)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0 12px',
-          gap: '8px',
-          fontSize: '0.8rem',
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+      <div className="stage-transport-bar">
+        <div className="transport-group">
           <button className="btn-secondary" onClick={handleReplay} title="Replay entire sequence">
             Replay
           </button>
@@ -781,16 +769,11 @@ export const EmergenceStage: React.FC<EmergenceStageProps> = ({
             const val = parseFloat(e.target.value);
             stateRef.current.currentTime = (val / 1000) * stateRef.current.totalDuration;
           }}
-          style={{
-            flex: 1,
-            margin: '0 8px',
-            height: '5px',
-            accentColor: 'var(--curve-azure)',
-          }}
+          className="transport-slider"
           aria-label="Simulation timeline"
         />
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+        <div className="transport-group">
           <button className="btn-secondary" onClick={handleSpeedToggle} title="Toggle playback speed">
             {speed}x
           </button>

@@ -289,8 +289,10 @@ export const CommandBar: React.FC<CommandBarProps> = ({ onRun, result, errorMsg 
                 ? 'var(--ui-warning)'
                 : 'var(--ui-error)',
             display: 'flex',
+            flexWrap: 'wrap',
             alignItems: 'center',
             gap: '6px',
+            wordBreak: 'break-word',
           }}
         >
           <span style={{ fontWeight: 600 }}>Status: {result.statusLabel}</span>
