@@ -256,6 +256,31 @@ button:focus-visible {
   margin-bottom: 10px;
 }
 
+/* Applications Section */
+.applications-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.kepler-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 /* Stage Transport Bar */
 .stage-transport-bar {
   min-height: 44px;
@@ -303,11 +328,23 @@ button:focus-visible {
   .charts-layout {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  .applications-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kepler-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (max-width: 640px) {
   .app-container {
     padding: 12px 10px 32px 10px;
+  }
+
+  .applications-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .form-inputs-layout {

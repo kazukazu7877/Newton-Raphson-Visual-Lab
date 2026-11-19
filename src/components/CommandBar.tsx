@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { NewtonResult } from '../engine/solver';
 
 export interface PresetConfig {
@@ -68,22 +68,51 @@ export const PRESETS: PresetConfig[] = [
   },
 ];
 
+export interface ExternalLoadRequest {
+  name: string;
+  expr: string;
+  x0: number;
+  tol?: number;
+  maxIter?: number;
+  timestamp: number;
+}
+
 interface CommandBarProps {
   onRun: (expr: string, x0: number, tol: number, maxIter: number) => void;
   result: NewtonResult | null;
   errorMsg: string | null;
+  externalLoad?: ExternalLoadRequest | null;
 }
 
-export const CommandBar: React.FC<CommandBarProps> = ({ onRun, result, errorMsg }) => {
+export const CommandBar: React.FC<CommandBarProps> = ({ onRun, result, errorMsg, externalLoad }) => {
   const [selectedPreset, setSelectedPreset] = useState<number>(0);
+  const [customName, setCustomName] = useState<string | null>(null);
   const [expr, setExpr] = useState<string>(PRESETS[0]!.expr);
   const [x0, setX0] = useState<string>(PRESETS[0]!.x0.toString());
   const [tol, setTol] = useState<string>(PRESETS[0]!.tol);
   const [maxIter, setMaxIter] = useState<string>(PRESETS[0]!.maxIter.toString());
   const [localError, setLocalError] = useState<string | null>(null);
 
+  // Sync with external application load requests (e.g. from Applications section)
+  useEffect(() => {
+    if (externalLoad) {
+      setCustomName(externalLoad.name);
+      setSelectedPreset(-1);
+      setExpr(externalLoad.expr);
+      setX0(externalLoad.x0.toString());
+      const tolNum = externalLoad.tol ?? parseFloat(tol);
+      setTol(tolNum.toString());
+      const maxIterNum = externalLoad.maxIter ?? parseInt(maxIter, 10);
+      setMaxIter(maxIterNum.toString());
+      setLocalError(null);
+      onRun(externalLoad.expr, externalLoad.x0, tolNum, maxIterNum);
+    }
+  }, [externalLoad]);
+
   const handlePresetChange = (idx: number) => {
     setSelectedPreset(idx);
+    if (idx === -1) return;
+    setCustomName(null);
     const p = PRESETS[idx];
     if (p) {
       setExpr(p.expr);
@@ -143,6 +172,11 @@ export const CommandBar: React.FC<CommandBarProps> = ({ onRun, result, errorMsg 
             onChange={(e) => handlePresetChange(parseInt(e.target.value, 10))}
             aria-label="Example Equation or Failure Mode"
           >
+            {customName && (
+              <option value={-1}>
+                Custom: {customName}
+              </option>
+            )}
             {PRESETS.map((p, i) => (
               <option key={p.name} value={i}>
                 {p.name}

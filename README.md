@@ -25,6 +25,7 @@ All mathematical calculations run strictly in client-side TypeScript. The visual
 - **Analytical AST Engine**: Custom Pratt precedence-climbing parser supporting standard operators, parentheses, implicit multiplication, unicode superscripts, and functions (`sin`, `cos`, `tan`, `exp`, `log`, `ln`, `sqrt`, `abs`, `asin`, `acos`, `atan`, `sinh`, `cosh`, `tanh`, `pi`, `e`).
 - **Comprehensive Failure Modes**: Graceful detection and visual handling of zero derivative ($|f'(x)| < 10^{-12}$), initial root placement, domain departure, divergence ($|x| > 10^{12}$), and stalled iterations.
 - **Interactive Calculation & Diagnostics**: Step-by-step mathematical substitution cards, tabular history, and dual real-time convergence charts (linear trajectory and log-scale residual convergence).
+- **Practical Applications & Featured Kepler Demo**: Dedicated "Where it is used" section featuring an interactive canvas orbit solving Kepler's equation for planetary position, alongside 12 practical applications across engineering, finance, graphics, and computing. Card definitions live in `src/content/applications.ts`.
 - **Self-Contained & Secure**: Zero external runtime requests, zero dynamic code evaluation (`eval` / `new Function`), self-hosted fonts (`Space Grotesk`, `Inter`), and strict Content Security Policy (CSP).
 
 ---
@@ -48,6 +49,11 @@ All mathematical calculations run strictly in client-side TypeScript. The visual
 │   └── palette.py            # Token source of truth
 ├── src/
 │   ├── components/
+│   │   ├── applications/
+│   │   │   ├── ApplicationCard.tsx
+│   │   │   ├── ApplicationsSection.tsx
+│   │   │   ├── FunctionThumbnail.tsx
+│   │   │   └── KeplerDemo.tsx
 │   │   ├── CalculationPanel.tsx
 │   │   ├── CommandBar.tsx
 │   │   ├── ConvergenceCharts.tsx
@@ -56,6 +62,8 @@ All mathematical calculations run strictly in client-side TypeScript. The visual
 │   │   ├── IterationTable.tsx
 │   │   ├── MathView.tsx
 │   │   └── UnderstandMethod.tsx
+│   ├── content/
+│   │   └── applications.ts       # Typed definitions for 12 application cards
 │   ├── engine/
 │   │   ├── animation.ts
 │   │   ├── parser.ts
@@ -64,6 +72,7 @@ All mathematical calculations run strictly in client-side TypeScript. The visual
 │   ├── styles/
 │   │   └── index.css
 │   ├── __tests__/
+│   │   ├── applications.test.ts
 │   │   ├── engine.test.ts
 │   │   ├── quality_gates.test.ts
 │   │   └── ui_parity.test.ts
@@ -99,7 +108,7 @@ npm run dev
 
 ### Automated Testing
 
-Run the automated test suite (59 unit, parity, and security checks):
+Run the automated test suite (81 unit, parity, applications, and security checks):
 
 ```bash
 npm test
@@ -112,6 +121,15 @@ Compile TypeScript and generate optimized assets in `dist/`:
 ```bash
 npm run build
 ```
+
+---
+
+## Sources
+
+- Richard L. Burden and J. Douglas Faires, *Numerical Analysis*.
+- Steven C. Chapra and Raymond P. Canale, *Numerical Methods for Engineers*.
+- Frank M. White, *Fluid Mechanics* (for the Colebrook friction factor equation).
+- Howard D. Curtis, *Orbital Mechanics for Engineering Students* (for Kepler's equation and eccentric anomaly).
 
 ---
 

@@ -9,7 +9,8 @@ import math
 import sys
 import os
 
-# Add parent directory to path
+# Add reference and parent directories to path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from newton_raphson import solve, parse_expression
@@ -146,6 +147,72 @@ def main():
     fixtures.append(make_fixture(
         "unicode_superscript",
         "x\u00b2 \u2212 2", 1.0, tol=1e-8, max_iter=20
+    ))
+
+    # 14. Applications: Colebrook pipe friction factor
+    fixtures.append(make_fixture(
+        "app_colebrook",
+        "x + 2*log(0.001/3.7 + 2.51*x/100000)/log(10)", 7.0, tol=1e-6, max_iter=20
+    ))
+
+    # 15. Applications: Internal rate of return (finance)
+    fixtures.append(make_fixture(
+        "app_irr",
+        "-1000 + 300/(1+x) + 400/(1+x)**2 + 500/(1+x)**3", 0.1, tol=1e-6, max_iter=20
+    ))
+
+    # 16. Applications: Square root computation
+    fixtures.append(make_fixture(
+        "app_sqrt",
+        "x**2 - 10", 3.0, tol=1e-6, max_iter=20
+    ))
+
+    # 17. Applications: Reciprocal computation without division
+    fixtures.append(make_fixture(
+        "app_reciprocal",
+        "1/x - 3", 0.3, tol=1e-6, max_iter=20
+    ))
+
+    # 18. Applications: Fast inverse square root
+    fixtures.append(make_fixture(
+        "app_fast_rsqrt",
+        "1/x**2 - 5", 0.4, tol=1e-6, max_iter=20
+    ))
+
+    # 19. Applications: van der Waals gas volume
+    fixtures.append(make_fixture(
+        "app_vdw",
+        "(10 + 3.640/x**2)*(x - 0.04267) - 0.08314*300", 2.4942, tol=1e-6, max_iter=20
+    ))
+
+    # 20. Applications: van der Waals variant
+    fixtures.append(make_fixture(
+        "app_vdw_variant",
+        "(15 + 3.640/x**2)*(x - 0.04267) - 0.08314*350", 1.8, tol=1e-6, max_iter=20
+    ))
+
+    # 21. Applications: Optimisation local minimum
+    fixtures.append(make_fixture(
+        "app_opt_min",
+        "4*x**3 - 6*x + 1", 1.0, tol=1e-6, max_iter=20
+    ))
+
+    # 22. Applications: Optimisation local maximum
+    fixtures.append(make_fixture(
+        "app_opt_max",
+        "4*x**3 - 6*x + 1", 0.5, tol=1e-6, max_iter=20
+    ))
+
+    # 23. Applications: Kepler celestial orbit demo
+    fixtures.append(make_fixture(
+        "app_kepler_std",
+        "x - 0.5*sin(x) - 1.0", 1.0, tol=1e-12, max_iter=50
+    ))
+
+    # 24. Applications: Kepler high eccentricity
+    fixtures.append(make_fixture(
+        "app_kepler_high_e",
+        "x - 0.8*sin(x) - 2.0", math.pi, tol=1e-12, max_iter=50
     ))
 
     # Also generate parser test cases
