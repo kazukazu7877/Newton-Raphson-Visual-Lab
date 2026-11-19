@@ -38,3 +38,7 @@ venv/
 
 .vercel
 .env*
+
+# Local report files (kept local to protect public GitHub repository anonymity)
+Newton_Raphson_Project_Report.*
+report_assets/
